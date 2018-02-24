@@ -74,7 +74,7 @@ app.get('/logout', (req,res) => {
   });
 });
 
-app.get('/screensaver', function (req, res) {
+app.get('/screen', function (req, res) {
   let logo = "logo.jpg";
 
   if (fs.existsSync(path.join(__dirname, "upload"))) {

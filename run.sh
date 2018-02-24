@@ -18,4 +18,4 @@ matchbox-window-manager -use_cursor no -use_titlebar no  &
 cd ~/MediaPlayerPi/
 node app.js &
 # run browser
-midori -e Fullscreen -a http://localhost:3000/screensaver
+midori -e Fullscreen -a http://localhost:3000/screen

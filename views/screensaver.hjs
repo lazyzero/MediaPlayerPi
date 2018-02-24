@@ -6,7 +6,7 @@
     <title>{{title}}</title>
   </head>
 
-  <body>
-    
+  <body background="{{logo}}">
+
   </body>
 </html>

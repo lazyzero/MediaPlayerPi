@@ -5,6 +5,7 @@ const app = express();
 
 let sess;
 const title = 'MediaPlayerPi';
+const logo = "logo.jpg";
 
 app.set('views', './views');
 app.set('view engine', 'hjs');
@@ -18,6 +19,8 @@ var readSession = function (req, res, next) {
 };
 
 //add some middleware
+
+app.use(express.static('upload'));
 app.use(session({
   secret: 'sosecret',
   name: 'MediaPlayerPi',
@@ -73,6 +76,7 @@ app.get('/logout', (req,res) => {
 app.get('/screensaver', function (req, res) {
   res.render('screensaver', {
     title: `${title}`,
+    logo: `${logo}`,
     showEmail: sess.showEmail,
     email: `${sess.email}`
   });

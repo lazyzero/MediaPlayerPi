@@ -1,11 +1,12 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 
 let sess;
 const title = 'MediaPlayerPi';
-const logo = "logo.jpg";
 
 app.set('views', './views');
 app.set('view engine', 'hjs');
@@ -74,6 +75,13 @@ app.get('/logout', (req,res) => {
 });
 
 app.get('/screensaver', function (req, res) {
+  let logo = "logo.jpg";
+
+  if (fs.existsSync(path.join(__dirname, "upload"))) {
+    if (fs.existsSync(path.join(__dirname, "upload/logo.png"))) {
+      logo = "logo.png";
+    }
+  }
   res.render('screensaver', {
     title: `${title}`,
     logo: `${logo}`,

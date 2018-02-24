@@ -2,11 +2,17 @@
 <html>
   <head>
     <meta charset="UTF-8">
+
     <title>Title of the document</title>
   </head>
 
   <body>
-    Content of the document......
+    <h1>{{title}}</h1>
+    {{#showEmail}}
+    Hello {{email}}
+    {{/showEmail}}
+    <span>
+    Content of the document......</span>
   </body>
 
 </html>

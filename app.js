@@ -69,3 +69,11 @@ app.get('/logout', (req,res) => {
     }
   });
 });
+
+app.get('/screensaver', function (req, res) {
+  res.render('screensaver', {
+    title: `${title}`,
+    showEmail: sess.showEmail,
+    email: `${sess.email}`
+  });
+});

@@ -34,7 +34,7 @@ Install dependencies
 ```
 sudo apt-get update
 sudo apt-get dist-upgrade
-sudo apt-get install midori matchbox-window-manager xserver-xorg x11-xserver-utils unclutter xinit git 
+sudo apt-get install midori matchbox-window-manager xserver-xorg x11-xserver-utils unclutter xinit git
 ```
 
 Now install NodeJS 8.x
@@ -46,5 +46,5 @@ node -v
 
 Clone MediaPlayerPi in your home directory
 ```
-git clone
+git clone git@github.com:lazyzero/MediaPlayerPi.git
 ```

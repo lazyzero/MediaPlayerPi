@@ -1,35 +1,51 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Title of the document</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <script>
     $(document).ready(function(){
-        var email,pass;
+        var user,pass;
         $("#submit").click(function(){
-            email=$("#email").val();
+            user=$("#user").val();
             pass=$("#password").val();
             /*
             * Perform some validation here.
             */
-            $.post("http://localhost:3000/login",{email:email,pass:pass},function(data){
+            $.post("http://localhost:3000/login",{user:user,pass:pass},function(data){
                 if(data==='done')
                 {
-                    window.location.href="/";
+                  window.location.href="/admin";
+                } else {
+                  $("#error #error-message").text("Error: " + data);
                 }
             });
         });
     });
     </script>
+
+    <title>Title of the document</title>
   </head>
 
   <body>
-    <h1>{{title}}</h1>
-    <input type="text" size="40" placeholder="Type your email" id="email"><br />
-    <input type="password" size="40" placeholder="Type your password" id="password"><br />
-    <input type="button" value="Submit" id="submit">
+
+    <div class="container text-center vertical-center align-items-center">
+      <h1>{{title}}</h1>
+      <div id="error">
+        <span id="error-message"></span>
+      </div>
+      <input type="text" size="40" placeholder="Type your user name" id="user"><br />
+      <input type="password" size="40" placeholder="Type your password" id="password"><br />
+      <input type="button" value="Submit" id="submit">
+    </div>
+
+
   </body>
 
 </html>

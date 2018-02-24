@@ -1,0 +1,18 @@
+{
+  "title": "MediaPlayerPi",
+  "admin": {
+    "user": "admin",
+    "password": "$2a$10$VxGazFhakQcxboervR3xY.ptxEtVz5Sq2aOzDfjkkVtYlRqywC.4a"
+  },
+  "content": [
+    {
+      "type": "image",
+      "uri": "logo.jpg",
+      "duration": 5
+    },
+    {
+      "type": "video",
+      "uri": "test.mp4"
+    }
+  ]
+}

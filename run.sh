@@ -16,4 +16,4 @@ unclutter &
 matchbox-window-manager -use_cursor no -use_titlebar no  &
 
 # run browser
-midori -e Fullscreen -a http://www.google.com
+midori -e Fullscreen -a http://localhost:3000/

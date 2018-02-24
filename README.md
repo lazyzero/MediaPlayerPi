@@ -55,9 +55,9 @@ sudo gpasswd -a pi tty
 sudo sed -i '/^exit 0/c\chmod g+rw /dev/tty?\nexit 0' /etc/rc.local
 ```
 
-Add this at the end of /home/pi/.bashrc to start the MediaPlayerPi:
+Add this at the end of /home/pi/.bashrc to start the MediaPlayerPi^:
 ```
 if [ -z "${SSH_TTY}" ]; then
-  xinit ~/run.sh
+  xinit ~/MediaPlayerPi/run.sh
 fi
 ```

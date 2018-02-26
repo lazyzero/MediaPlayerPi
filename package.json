@@ -7,7 +7,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "fs-extra": "^5.0.0",
-    "hjs": "0.0.6",
-    "nconf": "^0.10.0"
+    "fs-finder": "^1.8.1",
+    "hjs": "0.0.6"
   }
 }

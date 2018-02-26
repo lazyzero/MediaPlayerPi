@@ -1,14 +1,22 @@
 const express = require('express');
-const fs = require('fs-extra');
 const path = require('path');
+const fs = require('fs-extra');
+const finder = require('fs-finder');
 const app = express();
 
-//config.file({ file: 'config/config.json' });
-let config = {
-  "title": "MediaPlayerPi"
-}
+const sleep = require('sleep');
+
+let config = fs.readJsonSync('config/config.json');
+// let config = {
+//   "title": "MediaPlayerPi"
+// }
+
 
 const title = config.title;
+
+var mediaFiles = finder.in(path.join(__dirname, 'upload')).findFiles('*.<mp4|mkv>');
+let mediaIndex = -1;
+console.log(mediaFiles);
 
 app.set('views', './views');
 app.set('view engine', 'hjs');
@@ -33,3 +41,16 @@ app.get('/screen', function (req, res) {
     logo: `${logo}`
   });
 });
+
+//wait 3 seconds after server started, then start playback
+setTimeout(playNext(), 3000);
+
+function playNext() {
+  mediaIndex++;
+  if (mediaIndex >= mediaFiles.length) {
+    mediaIndex = 0;
+  }
+  console.log(mediaFiles[mediaIndex]);
+  sleep.sleep(3);
+  playNext();
+}

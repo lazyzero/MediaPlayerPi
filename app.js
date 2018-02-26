@@ -23,6 +23,9 @@ if (!config.get('admin:password')) {
   });
 }
 
+//load the content array
+let content = config.get('content');
+
 var readSession = function (req, res, next) {
   sess = req.session;
   if (sess.user) {

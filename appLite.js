@@ -2,10 +2,11 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs-extra');
 const finder = require('fs-finder');
+var omx = require('node-omxplayer');
+
 const app = express();
 
-const sleep = require('sleep');
-
+var player = new omx();
 let config = fs.readJsonSync('config/config.json');
 // let config = {
 //   "title": "MediaPlayerPi"
@@ -50,7 +51,9 @@ function playNext() {
   if (mediaIndex >= mediaFiles.length) {
     mediaIndex = 0;
   }
-  console.log(mediaFiles[mediaIndex]);
-  sleep.sleep(3);
-  playNext();
+  console.log(`Play file: ${mediaFiles[mediaIndex]}`);
+  player = omx(mediaFiles[mediaIndex]);
+  player.on('close', function() {
+    playNext();
+  });
 }

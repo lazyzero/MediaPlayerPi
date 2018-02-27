@@ -40,7 +40,7 @@ app.get('/screen', function (req, res) {
 });
 
 //wait 3 seconds after server started, then start playback
-setTimeout(playNext(), 3000);
+setTimeout(playNext, 3000);
 
 function playNext() {
   mediaIndex++;

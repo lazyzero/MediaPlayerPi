@@ -8,10 +8,6 @@ const app = express();
 
 var player = new omx();
 let config = fs.readJsonSync('config/config.json');
-// let config = {
-//   "title": "MediaPlayerPi"
-// }
-
 
 const title = config.title;
 

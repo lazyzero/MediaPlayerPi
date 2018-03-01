@@ -48,7 +48,7 @@ function playNext() {
     mediaIndex = 0;
   }
   console.log(`Play file: ${mediaFiles[mediaIndex]}`);
-  player = omx(mediaFiles[mediaIndex]);
+  player = omx(mediaFiles[mediaIndex], 'hdmi', 10);
   player.on('close', function() {
     playNext();
   });

@@ -1,5 +1,7 @@
 # MediaPlayerPi
+To prepare your Pi for MediaPlayerPiyou can use my project  [MediaPlayerPiInit](https://github.com/lazyzero/MediaPlayerPiInit) on github.
 
+To do it on your own please follow the steps below.
 ## Prepare SD card for Raspberry Pi
 Download the latest Raspbian lite from [here](https://downloads.raspberrypi.org/raspbian_lite_latest) and upload it to the SD card with Etcher or ApplePi-Baker or your preffered tool.
 
@@ -25,8 +27,6 @@ After booting the Raspberry Pi you should be able to access it by SSH.
 ssh pi@raspberry.local
 ```
 ## Configure Raspberry Pi and install dependencies.
-Execute `sudo raspi-config` and change the timezone and keyboard layout to your needs, hostname to something like `mediaplayerpi` and password.
-Set the boot options to `autologin to CLI (B2)`.
 
 If nesseccary configure additional WiFi networks in `/etc/wpa_supplicant/wpa_supplicant.conf`.
 
@@ -55,9 +55,23 @@ sudo gpasswd -a pi tty
 sudo sed -i '/^exit 0/c\chmod g+rw /dev/tty?\nexit 0' /etc/rc.local
 ```
 
-Add this at the end of /home/pi/.bashrc to start the MediaPlayerPi^:
+Add this at the end of `/home/pi/.bashrc` to start the MediaPlayerPi^:
 ```
 if [ -z "${SSH_TTY}" ]; then
   xinit ~/MediaPlayerPi/run.sh
 fi
 ```
+
+Create the file `/etc/systemd/system/getty@tty1.service.d/autologin.conf` and add the following content to do autologin on tty1:
+```
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin pi --noclear %I 38400 linux
+```
+Enable the login as a Service
+```
+sudo systemctl enable getty@tty1.service
+```
+Change the hostname by editing the `/etc/hostname`.
+
+Change the password of the user `pi` with `passwd`.

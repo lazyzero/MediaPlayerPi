@@ -6,6 +6,7 @@ var omx = require('node-omxplayer');
 
 const app = express();
 
+var loop = true;
 var player = new omx();
 let config = fs.readJsonSync('config/config.json');
 
@@ -26,7 +27,8 @@ app.listen(3000, function () {
 });
 
 app.get('/stop', function (req, res) {
-  player.stop();
+  loop = false;
+  player.quit();
 });
 
 app.get('/start', function (req, res) {
@@ -58,6 +60,6 @@ function playNext() {
   console.log(`Play file: ${mediaFiles[mediaIndex]}`);
   player = omx(mediaFiles[mediaIndex], 'hdmi', false, 3);
   player.on('close', function() {
-    playNext();
+    if (loop) playNext();
   });
 }

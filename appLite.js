@@ -25,6 +25,14 @@ app.listen(3000, function () {
   console.log(`${title} listening on port 3000!`);
 });
 
+app.get('/stop', function (req, res) {
+  player.stop();
+});
+
+app.get('/start', function (req, res) {
+  playNext();
+});
+
 app.get('/screen', function (req, res) {
   let logo = "logo.jpg";
 

@@ -29,11 +29,13 @@ app.listen(3000, function () {
 app.get('/stop', function (req, res) {
   loop = false;
   player.quit();
+  res.send(200);
 });
 
 app.get('/start', function (req, res) {
   loop = true;
   playNext();
+  res.send(200);
 });
 
 app.get('/screen', function (req, res) {

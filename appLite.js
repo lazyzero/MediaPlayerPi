@@ -34,8 +34,12 @@ app.get('/stop', function (req, res) {
 
 app.get('/start', function (req, res) {
   loop = true;
-  playNext();
-  res.send(200);
+  if (!player.running) {
+    playNext();
+    res.send(200);
+  } else {
+    res.send(304);
+  }
 });
 
 app.get('/screen', function (req, res) {

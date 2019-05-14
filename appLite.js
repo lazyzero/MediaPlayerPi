@@ -32,6 +32,7 @@ app.get('/stop', function (req, res) {
 });
 
 app.get('/start', function (req, res) {
+  loop = true;
   playNext();
 });
 

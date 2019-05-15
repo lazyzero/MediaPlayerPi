@@ -34,16 +34,6 @@ app.get('/stop', function (req, res) {
   res.send(200);
 });
 
-app.get('/showDefault', function (req, res) {
-  showDefault = true;
-  res.send(200);
-});
-
-app.get('/hideDefault', function (req, res) {
-  showDefault = false;
-  res.send(200);
-});
-
 app.get('/start', function (req, res) {
   loop = true;
   if (!player.running) {
@@ -62,14 +52,12 @@ app.get('/screen', function (req, res) {
       logo = "logo.png";
     }
   }
-  if (showDefault) {
-    res.render('upload/default/index.html');
-  } else {
-    res.render('screen', {
-      title: `${title}`,
-      logo: `${logo}`
-    });
-  }
+
+  res.render('screen', {
+    title: `${title}`,
+    logo: `${logo}`
+  });
+
 });
 
 //wait 3 seconds after server started, then start playback
@@ -83,6 +71,6 @@ function playNext() {
   console.log(`Play file: ${mediaFiles[mediaIndex]}`);
   player = omx(mediaFiles[mediaIndex], 'hdmi', false, 3);
   player.on('close', function() {
-    if (loop) playNext();
+    if (loop) setTimeout(playNext, 3000);
   });
 }

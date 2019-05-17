@@ -60,7 +60,7 @@ app.get('/screen', function (req, res) {
 
 });
 
-app.get('/screen', function (req, res) {
+app.get('/screen0', function (req, res) {
   let logo = "logo.jpg";
   let image = "image.jpg";
 

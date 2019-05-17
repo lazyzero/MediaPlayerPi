@@ -60,17 +60,40 @@ app.get('/screen', function (req, res) {
 
 });
 
+app.get('/screen', function (req, res) {
+  let logo = "logo.jpg";
+  let image = "image.jpg";
+
+  if (fs.existsSync(path.join(__dirname, "upload"))) {
+    if (fs.existsSync(path.join(__dirname, "upload/logo.png"))) {
+      logo = "logo.png";
+    }
+    if (fs.existsSync(path.join(__dirname, "upload/image.jpg"))) {
+      image = "image.jpg";
+    }
+  }
+
+  res.render('screen', {
+    title: `${title}`,
+    logo: `${logo}`,
+    image: `${image}`
+  });
+
+});
+
 //wait 3 seconds after server started, then start playback
 setTimeout(playNext, 3000);
 
 function playNext() {
-  mediaIndex++;
-  if (mediaIndex >= mediaFiles.length) {
-    mediaIndex = 0;
+  if (loop) {
+    mediaIndex++;
+    if (mediaIndex >= mediaFiles.length) {
+      mediaIndex = 0;
+    }
+    console.log(`Play file: ${mediaFiles[mediaIndex]}`);
+    player = omx(mediaFiles[mediaIndex], 'hdmi', false, 3);
+    player.on('close', function() {
+      if (loop) setTimeout(playNext, 3000);
+    });
   }
-  console.log(`Play file: ${mediaFiles[mediaIndex]}`);
-  player = omx(mediaFiles[mediaIndex], 'hdmi', false, 3);
-  player.on('close', function() {
-    if (loop) setTimeout(playNext, 3000);
-  });
 }

@@ -60,27 +60,6 @@ app.get('/screen', function (req, res) {
 
 });
 
-app.get('/screen0', function (req, res) {
-  let logo = "logo.jpg";
-  let image = "image.jpg";
-
-  if (fs.existsSync(path.join(__dirname, "upload"))) {
-    if (fs.existsSync(path.join(__dirname, "upload/logo.png"))) {
-      logo = "logo.png";
-    }
-    if (fs.existsSync(path.join(__dirname, "upload/image.jpg"))) {
-      image = "image.jpg";
-    }
-  }
-
-  res.render('screen', {
-    title: `${title}`,
-    logo: `${logo}`,
-    image: `${image}`
-  });
-
-});
-
 //wait 3 seconds after server started, then start playback
 setTimeout(playNext, 3000);
 
